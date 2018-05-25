@@ -18,7 +18,7 @@ public class Team {
     public LocalDateTime schoolYear;
     public String banquetInfo;
     @DbArray
-    public List<String> coaches;
+    public static List<String> coaches;
     public Student MVP;
     public Student MIP;
 
