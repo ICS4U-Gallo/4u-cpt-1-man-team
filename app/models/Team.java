@@ -50,7 +50,7 @@ public class Team {
         }
     }
 
-    public static List<Team> findByCoach(String email){
-
-    }
+//    public static List<Team> findByCoach(String email){
+//        
+//    }
 }
