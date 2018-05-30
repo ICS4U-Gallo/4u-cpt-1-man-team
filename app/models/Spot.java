@@ -8,5 +8,11 @@ import javax.persistence.Entity;
 public class Spot {
     Team team;
     Student student;
+
+    //For testing purposes
+    public Spot(Student student){
+        this.student = student;
+    }
+
     public static Finder<Integer, Spot> find = new Finder<>(Spot.class);
 }

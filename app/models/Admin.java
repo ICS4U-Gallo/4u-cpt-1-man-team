@@ -10,5 +10,5 @@ public class Admin extends Person {
         super(firstName, lastName, email);
     }
 
-    public static Finder<String, Admin> find = new Finder<>(Admin.class);
+    public static Finder<Integer, Admin> find = new Finder<>(Admin.class);
 }

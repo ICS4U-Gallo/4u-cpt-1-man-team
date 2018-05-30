@@ -1,16 +1,22 @@
 package models;
 
+import io.ebean.Finder;
 import io.ebean.annotation.DbArray;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Team {
+@Entity
+public class Team extends BaseModel{
     public String division;
     public String gender;
+
+    // team only needs one sport
     @ManyToOne(cascade = CascadeType.ALL)
     public List<Sport> sport;
     public String season;
@@ -20,9 +26,15 @@ public class Team {
     public LocalDateTime schoolYear;
     public String banquetInfo;
     @DbArray
-    public static List<String> coaches;
+    public List<String> coaches = new ArrayList<>();
     public Student MVP;
     public Student MIP;
+
+    //For testing purposes
+    public Team(String division, String gender){
+        this.division = division;
+        this.gender = gender;
+    }
 
     public String toString(){
         return division + " " + gender+ " " + sport;
@@ -33,8 +45,7 @@ public class Team {
     }
 
     public void addPlayer(Student student) {
-        Spot newPlayer = new Spot();
-        newPlayer.student = student;
+        Spot newPlayer = new Spot(student);
         spots.add(newPlayer);
     }
 
@@ -50,7 +61,9 @@ public class Team {
         }
     }
 
-//    public static List<Team> findByCoach(String email){
-//        
-//    }
+    public static Finder<Integer, Team> find = new Finder<>(Team.class);
+
+    public static List<Team> findByCoach(String email){
+        return find.query().where().contains("coaches", email).findList();
+    }
 }
