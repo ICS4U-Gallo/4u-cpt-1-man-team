@@ -18,11 +18,10 @@ public class Team extends BaseModel{
 
     // team only needs one sport
     @ManyToOne(cascade = CascadeType.ALL)
-    public List<Sport> sport;
+    public String sport;
     public String season;
     @OneToMany(cascade = CascadeType.REMOVE)
-    public List<Spot> spots;
-    @ManyToOne(cascade = CascadeType.ALL)
+    public List<Spot> spots = new ArrayList<>();
     public LocalDateTime schoolYear;
     public String banquetInfo;
     @DbArray
@@ -31,9 +30,10 @@ public class Team extends BaseModel{
     public Student MIP;
 
     //For testing purposes
-    public Team(String division, String gender){
+    public Team(String division, String gender, String sport){
         this.division = division;
         this.gender = gender;
+        this.sport = sport;
     }
 
     public String toString(){

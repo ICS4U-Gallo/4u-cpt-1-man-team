@@ -3,10 +3,13 @@ package models;
 import io.ebean.Finder;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Spot {
+public class Spot extends BaseModel {
+    @ManyToOne
     Team team;
+
     Student student;
 
     //For testing purposes
