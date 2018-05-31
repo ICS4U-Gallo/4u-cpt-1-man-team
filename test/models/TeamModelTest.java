@@ -39,22 +39,14 @@ public class TeamModelTest extends WithApplication{
 
     @Test
     public void testAddPlayer() {
-        Student student1 = new Student();
-        Spot player1 = new Spot(student1);
-        Student student2 = new Student();
-        Spot player2 = new Spot(student2);
-        Student student3 = new Student();
-        Spot player3 = new Spot(student3);
-
+        Student student = new Student();
         Team team = new Team("", "");
 
-        // init in class, remove from here
-        team.spots = new ArrayList<>();
+        team.addPlayer(student);
 
-        team.spots.add(player1);
-        team.spots.add(player2);
-        team.addPlayer(student3);
-
+        Team.find.query().where()
+                .eq("spots.get(spots.size() - 1)", "student")
+                .findOne();
     }
 
 }
