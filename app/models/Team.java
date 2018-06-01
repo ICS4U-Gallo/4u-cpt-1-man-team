@@ -50,15 +50,18 @@ public class Team extends BaseModel{
     }
 
     public void removePlayer(Integer id) {
-        removePlayer(Spot.find.byId(id));
+        removePlayer(Student.find.byId(id));
     }
 
-    public void removePlayer(Spot spot){
-        for (int i = 0; i < spots.size(); i++){
-            if (spots.get(i) == spot){
-                spots.remove(i);
+    public void removePlayer(Student student){
+        for(int i = 0; i < spots.size(); i++) {
+            if (spots.get(i).student.id == student.id) {
+                Spot spot = spots.get(i);
+                spots.remove(spot);
             }
         }
+
+
     }
 
     public static Finder<Integer, Team> find = new Finder<>(Team.class);

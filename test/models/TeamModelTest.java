@@ -48,6 +48,37 @@ public class TeamModelTest extends WithApplication{
 
     @Test
     public void testDeletePlayer(){
+        Student student = new Student();
+        student.save();
+        Team team = new Team("Senior", "Male", "Soccer");
+
+        team.addPlayer(student.id);
+        team.save();
+        team.removePlayer(student.id);
+        team.save();
+
+        assertEquals(0, team.spots.size());
+    }
+
+    @Test
+    public void testFindByCoach(){
+        Team basketball = new Team("", "", "Basketball");
+        basketball.coaches.add("emailOne");
+        basketball.coaches.add("emailTwo");
+        basketball.save();
+
+        Team baseball = new Team("", "", "Baseball");
+        baseball.coaches.add("emailThree");
+        baseball.coaches.add("emailOne");
+        baseball.save();
+
+        Team rugby = new Team("", "", "Rugby");
+        rugby.coaches.add("EmailTwo");
+        rugby.coaches.add("EmailThree");
+        rugby.save();
+
+        List<Team> teams = Team.findByCoach("emailOne");
+        assertEquals(2, teams.size());
 
     }
 
