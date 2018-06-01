@@ -33,18 +33,22 @@ public class TeamModelTest extends WithApplication{
         assertEquals("Senior Female Basketball", team.toString());
     }
 
-//    @Test
-//    public void testAddPlayer() {
-//        Student student = new Student();
-//        student.save();
-//        Team team = new Team("", "");
-//
-//        team.addPlayer(student);
-//        team.save();
-//
-//        Team result = Team.find.byId(team.id);
-//        Integer id = result.spots.get(0).student.id;
-//        assertEquals(student.id, id);
-//    }
+    @Test
+    public void testAddPlayer() {
+        Student student = new Student();
+        student.save();
+        Team team = new Team("Senior", "Male", "Soccer");
+
+        team.addPlayer(student.id);
+        team.save();
+
+        Integer id = team.spots.get(team.spots.size() -  1).student.id;
+        assertEquals(student.id, id);
+    }
+
+    @Test
+    public void testDeletePlayer(){
+
+    }
 
 }
